@@ -1,16 +1,12 @@
 import { Button } from "../ui/button";
 import { Cat, Mail } from 'lucide-react';
+import { socialButton } from "../actions/social";
 
 
 export const Social = () => {
 
-    const handleClick = async () => {
-        "use server"
-        console.log("Button cliccked")
-    };
-
     return (
-        <form className="flex items-center w-full gap-x-2" action={handleClick}>
+        <form className="flex items-center w-full gap-x-2" action={socialButton}>
             <Button 
               size="lg"
               className="w-full"

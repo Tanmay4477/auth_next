@@ -1,21 +1,23 @@
-import { redirect } from "next/navigation";
-import { Button } from "../ui/button"
+import { Button } from "../ui/button";
+import { handleBackButton } from "../actions/handle-back-button";
 
 interface BackButtonProps {
     href: string;
     label: string;
 }
 
-export const BackButton = ({href, label}: BackButtonProps) => {
+
+export const BackButton = ({ href, label }: BackButtonProps) => {
 
     return (
-        <form action={async () => {
-            "use server"
-            redirect(href)}
-        }>
-            <Button type="submit" variant="link" className="font-normal w-full" size="sm" asChild>
-                {label}
-            </Button>
+        <form action={handleBackButton} className="w-full flex items-center justify-center">
+            <input type="hidden" name="href" value={href} />
+            <Button
+                type="submit"
+                variant="link"
+                className="font-normal text-sm"
+                size="sm"
+            >{label}</Button>
         </form>
-    )
-}
+    );
+};

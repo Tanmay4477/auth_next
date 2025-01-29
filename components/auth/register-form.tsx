@@ -6,28 +6,29 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { CardWrapper } from "@/components/auth/card-wrapper";
-import { LoginSchema } from "@/schemas";
+import { RegisterSchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
 import { login } from "../actions/login";
 
 
-const LoginForm = () => {
+const RegisterForm = () => {
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | undefined>();
     const [success, setSuccess] = useState<string | undefined>();
 
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
             email: "",
-            password: ""
+            password: "",
+            name: "",
         },
 
     });
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
         setError("");
         setSuccess("")
         startTransition(() => {
@@ -40,13 +41,29 @@ const LoginForm = () => {
 
     return (
         <CardWrapper 
-          headerLabel="Welcome back"
-          backButtonHref="/auth/register"
-          backButtonLabel="Don't have an account?"
+          headerLabel="Register Now"
+          backButtonHref="/auth/login"
+          backButtonLabel="Login Instead"
           showSocial
         >
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                                <Input placeholder="tanmay" {...field} disabled={isPending} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+
+
                     <FormField
                     control={form.control}
                     name="email"
@@ -85,4 +102,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default RegisterForm;
