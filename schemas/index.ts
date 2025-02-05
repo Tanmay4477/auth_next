@@ -1,4 +1,5 @@
 import * as z from "zod";
+import bcrypt from "bcrypt";
 
 export const LoginSchema = z.object({
     email: z.string().email({

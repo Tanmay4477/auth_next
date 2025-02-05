@@ -10,7 +10,7 @@ import { RegisterSchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
-import { login } from "../actions/login";
+import { register } from "@/components/actions/register";
 
 
 const RegisterForm = () => {
@@ -32,7 +32,7 @@ const RegisterForm = () => {
         setError("");
         setSuccess("")
         startTransition(() => {
-            login(values).then((data) => {
+            register(values).then((data) => {
                 setError(data.error);
                 setSuccess(data.success)
             });
