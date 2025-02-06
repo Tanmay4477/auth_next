@@ -24,7 +24,6 @@ const LoginForm = () => {
             email: "",
             password: ""
         },
-
     });
 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {

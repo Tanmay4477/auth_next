@@ -34,7 +34,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
         }
     });
 
-    console.log(user);
+    console.log("inside regsiter.tsx file", user);
     // send verification email
     
     return {
