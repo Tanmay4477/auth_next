@@ -30,5 +30,6 @@ export const apiAuthPrefix = "/api/auth";
 
 /**
  * Default path if a user is already signed in
+ * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = "/settings"
